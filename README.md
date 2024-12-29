@@ -14,6 +14,13 @@ This project is designed to offer a comprehensive suite of image processing capa
 
 **Modular Design**: Supports various operations such as noise addition, thresholding, and compression, making it flexible for diverse use cases.
 
+
+## 🎥 Simple demo
+
+<div align="center">
+  <img src="https://github.com/marwin1991/profile-technology-icons/raw/main/static/demo.gif" />
+</div>
+
 ## 👾 Tech Stack
 <details>
   <summary>Client</summary>
@@ -29,4 +36,65 @@ This project is designed to offer a comprehensive suite of image processing capa
     <li><a href="https://www.uvicorn.org/">Uvicorn</a></li>
   </ul>
 </details>
+
+## Clone
+```bash
+git clone https://github.com/LeeMinHoy/Image-Processing.git
+cd <repository path>
+```
+
+## ⚙️ Installation
+```bash
+pip install -r requirements.txt
+```
+
+## 🏃 Run Backend FastAPI server with Uvicorn:
+```bash
+uvicorn server:app --port 8000 --reload
+```
+
+## 🏃 Run Frontend Streamlit server: 
+```bash
+streamlit run FE.py
+```
+
+## Example Results
+
+1. Negative Transformation
+**Before**
+<img src="https://contrib.rocks/image?repo=Louis3797/awesome-readme-template" width = 300 />
+**After**
+<img src="https://contrib.rocks/image?repo=Louis3797/awesome-readme-template" width = 300 />
+2. Historgram Equalization
+**Before**
+<img src="https://contrib.rocks/image?repo=Louis3797/awesome-readme-template" width = 300 />
+**After**
+<img src="https://contrib.rocks/image?repo=Louis3797/awesome-readme-template" width = 300 />
+4. Median Filter
+**Before**
+<img src="https://contrib.rocks/image?repo=Louis3797/awesome-readme-template" width = 300 />
+**After**
+<img src="https://contrib.rocks/image?repo=Louis3797/awesome-readme-template" width = 300 />
+6. Otsu Threshold Segmentation
+**Before**
+<img src="https://contrib.rocks/image?repo=Louis3797/awesome-readme-template" width = 300 />
+**After**
+<img src="https://contrib.rocks/image?repo=Louis3797/awesome-readme-template" width = 300 />
+8. Add Gaussian Noise
+**Before**
+<img src="https://contrib.rocks/image?repo=Louis3797/awesome-readme-template" width = 300 />
+**After**
+<img src="https://contrib.rocks/image?repo=Louis3797/awesome-readme-template" width = 300 />
+10. Erosion Morphology 
+**Before**
+<img src="https://contrib.rocks/image?repo=Louis3797/awesome-readme-template" width = 300 />
+**After**
+<img src="https://contrib.rocks/image?repo=Louis3797/awesome-readme-template" width = 300 />
+
+## 🤝 Contact
+Email: minhkhoi080203@gmail.com 
+
+Project Link: [https://github.com/LeeMinHoy/Image-Processing](https://github.com/LeeMinHoy/Image-Processing) 
+
+
 
