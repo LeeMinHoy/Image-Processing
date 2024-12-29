@@ -229,5 +229,5 @@ def jpeg_decompress(compressed_path, output_path):
     print(f"Decompressed image saved to {output_path}")
 
 # Example Usage
-jpeg_compress('./jpegCompression/realraw.dng', 'compressed.bin')
-jpeg_decompress('compressed.bin', './jpegCompression/reconstructed.jpg')
+# jpeg_compress('./jpegCompression/realraw.dng', 'compressed.bin')
+# jpeg_decompress('compressed.bin', './jpegCompression/reconstructed.jpg')

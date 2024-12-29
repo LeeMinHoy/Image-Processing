@@ -337,64 +337,39 @@ async def compress_decompress_image(image: UploadFile = File(...)):
     
     return StreamingResponse(BytesIO(buffer), media_type="image/png")
 
-@app.post("/jpeg-compress/")
-async def jpeg_compress_api(image: UploadFile = File(...)):
-    """
-    API Endpoint for JPEG compression.
-    Input: Image file.
-    Output: Compressed binary file.
-    """
+@app.post("/jpeg-process/")
+async def jpeg_process(image: UploadFile = File(...)):
     try:
-        # Lưu tệp đầu vào tạm thời
+        # Lưu tệp ảnh đầu vào tạm thời
         input_temp = NamedTemporaryFile(delete=False, suffix=".jpg")
         input_temp.write(await image.read())
         input_temp.close()
 
-        # Tạo tệp nhị phân tạm thời để lưu dữ liệu nén
-        output_temp = NamedTemporaryFile(delete=False, suffix=".bin")
-        output_temp.close()
+        # Tạo tệp nén tạm thời
+        compressed_temp = NamedTemporaryFile(delete=False, suffix=".bin")
+        compressed_temp.close()
 
         # Gọi hàm nén JPEG
-        jpeg_compress(input_temp.name, output_temp.name)
+        jpeg_compress(input_temp.name, compressed_temp.name)
 
-        # Xóa tệp đầu vào tạm thời
+        # Xóa tệp ảnh gốc tạm thời
         os.unlink(input_temp.name)
 
-        # Trả về tệp nhị phân nén
-        return FileResponse(output_temp.name, media_type="application/octet-stream", filename="compressed_image.bin")
-
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Error during compression: {str(e)}")
-
-
-@app.post("/jpeg-decompress/")
-async def jpeg_decompress_api(compressed_file: UploadFile = File(...)):
-    """
-    API Endpoint for JPEG decompression.
-    Input: Compressed .bin file.
-    Output: Decompressed image in .jpg format.
-    """
-    try:
-        # Lưu tệp nén đầu vào tạm thời
-        input_temp = NamedTemporaryFile(delete=False, suffix=".bin")
-        input_temp.write(await compressed_file.read())
-        input_temp.close()
-
-        # Tạo tệp đầu ra tạm thời
-        output_temp = NamedTemporaryFile(delete=False, suffix=".jpg")
-        output_temp.close()
+        # Tạo tệp giải nén tạm thời
+        decompressed_temp = NamedTemporaryFile(delete=False, suffix=".jpg")
+        decompressed_temp.close()
 
         # Gọi hàm giải nén JPEG
-        jpeg_decompress(input_temp.name, output_temp.name)
+        jpeg_decompress(compressed_temp.name, decompressed_temp.name)
 
         # Xóa tệp nén tạm thời
-        os.unlink(input_temp.name)
+        os.unlink(compressed_temp.name)
 
-        # Trả về tệp ảnh giải nén
-        return FileResponse(output_temp.name, media_type="image/jpeg", filename="decompressed_image.jpg")
-
+        # Trả về tệp ảnh JPEG đã giải nén
+        return FileResponse(decompressed_temp.name, media_type="image/jpeg", filename="processed_image.jpg")
+    
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Error during decompression: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Error during JPEG processing: {str(e)}")
 
 
 if __name__ == "__main__":
