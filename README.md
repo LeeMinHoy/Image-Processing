@@ -66,35 +66,45 @@ streamlit run FE.py
 <img src="https://github.com/user-attachments/assets/99081efc-2214-43f0-a6f4-0b4c6344d36a" width = "300" />
 **After**
 <img src="https://github.com/user-attachments/assets/ae59e4f1-97f8-4876-a002-69a1ee64d07c" width = "300" />
+
 2. Historgram Equalization
+
 **Before**
 
 <img src="https://contrib.rocks/image?repo=Louis3797/awesome-readme-template" width = 300 />
 **After**
 
 <img src="https://contrib.rocks/image?repo=Louis3797/awesome-readme-template" width = 300 />
-4. Median Filter
+
+3. Median Filter
+
 **Before**
 
 <img src="https://contrib.rocks/image?repo=Louis3797/awesome-readme-template" width = 300 />
 **After**
 
 <img src="https://contrib.rocks/image?repo=Louis3797/awesome-readme-template" width = 300 />
-6. Otsu Threshold Segmentation
+
+4. Otsu Threshold Segmentation
+   
 **Before**
 
 <img src="https://contrib.rocks/image?repo=Louis3797/awesome-readme-template" width = 300 />
 **After**
 
 <img src="https://contrib.rocks/image?repo=Louis3797/awesome-readme-template" width = 300 />
-8. Add Gaussian Noise
+
+5. Add Gaussian Noise
+
 **Before**
 
 <img src="https://contrib.rocks/image?repo=Louis3797/awesome-readme-template" width = 300 />
 **After**
 
 <img src="https://contrib.rocks/image?repo=Louis3797/awesome-readme-template" width = 300 />
-10. Erosion Morphology 
+
+6. Erosion Morphology
+
 **Before**
 
 <img src="https://contrib.rocks/image?repo=Louis3797/awesome-readme-template" width = 300 />
