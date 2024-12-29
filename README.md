@@ -63,10 +63,10 @@ streamlit run FE.py
 1. Negative Transformation
 **Before**
 
-<img src="https://contrib.rocks/image?repo=Louis3797/awesome-readme-template" width = 300 />
+<img src="![image](https://github.com/user-attachments/assets/99081efc-2214-43f0-a6f4-0b4c6344d36a)" width = 300 />
 **After**
 
-<img src="https://contrib.rocks/image?repo=Louis3797/awesome-readme-template" width = 300 />
+<img src="![image](https://github.com/user-attachments/assets/ae59e4f1-97f8-4876-a002-69a1ee64d07c)" width = 300 />
 3. Historgram Equalization
 **Before**
 
