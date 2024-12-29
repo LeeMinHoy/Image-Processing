@@ -37,6 +37,7 @@ def gaussian_low_pass_filter(image_shape, cutoff):
             H[u, v] = np.exp(-(D ** 2) / (2 * (cutoff ** 2)))
     return H
 
+
 def apply_filter_in_frequency_domain(image, filter_mask):
     # FFT and shift
     dft = np.fft.fft2(image)

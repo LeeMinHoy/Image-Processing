@@ -9,7 +9,10 @@ from typing import List
 from fastapi.responses import StreamingResponse
 import io
 from PIL import Image
+import os
+from tempfile import NamedTemporaryFile
 
+from Addnoise import add_gaussian_noise, add_salt_pepper_noise, add_uniform_noise
 from BitPlaneSlicing import bit_plane_slicing
 from HistogramProcessing import histogramEqualization, histogramMatching
 from NegativeImages import negative_process
@@ -21,8 +24,10 @@ from PieceWiseLinear import piecewiseLinear
 from ThersholdImages import threshold_processing
 from Filter import mean_filter, mean_filter_manual, median_filter, median_filter_manual, normalized_correletion, normalized_correlation_manual, contra_harmonic_mean_filter, sharpening_Laplacian
 from FFT_filter import ideal_low_pass_filter, butterworth_low_pass_filter, gaussian_low_pass_filter, apply_filter_in_frequency_domain
-from Addnoise import add_gaussian_noise, add_salt_pepper_noise, add_uniform_noise
 from ImageCompression import rle_encode, rle_decode, calculate_rms
+from jpegCompression.main import jpeg_compress, jpeg_decompress
+
+
 app = FastAPI()
 
 app.add_middleware(
@@ -103,21 +108,43 @@ async def process_logarithmic(image: UploadFile = File(...)):
     _, buffer = cv2.imencode('.png', log_img)
     return StreamingResponse(io.BytesIO(buffer), media_type="image/png")
 
-@app.post("/morphological/{operation}/")
-async def process_morphological(image: UploadFile = File(...), operation: str = "erosion", kernel_size: int = 3):
+@app.post("/morphological/erosion/")
+async def process_erosion(image: UploadFile = File(...), kernel_size: int = 3):
     img = read_image(image)
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     binary_image = to_binary(gray)
     inverted_binary_image = cv2.bitwise_not(binary_image)
-    operations = {
-        "erosion": erosion,
-        "dilation": dilation,
-        "opening": opening,
-        "closing": closing,
-    }
-    if operation not in operations:
-        raise HTTPException(status_code=400, detail="Invalid morphological operation")
-    result = operations[operation](inverted_binary_image, kernel_size)
+    result = erosion(inverted_binary_image, kernel_size)
+    _, buffer = cv2.imencode('.png', result)
+    return StreamingResponse(io.BytesIO(buffer), media_type="image/png")
+
+@app.post("/morphological/dilation/")
+async def process_dilation(image: UploadFile = File(...), kernel_size: int = 3):
+    img = read_image(image)
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    binary_image = to_binary(gray)
+    inverted_binary_image = cv2.bitwise_not(binary_image)
+    result = dilation(inverted_binary_image, kernel_size)
+    _, buffer = cv2.imencode('.png', result)
+    return StreamingResponse(io.BytesIO(buffer), media_type="image/png")
+
+@app.post("/morphological/opening/")
+async def process_opening(image: UploadFile = File(...), kernel_size: int = 3):
+    img = read_image(image)
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    binary_image = to_binary(gray)
+    inverted_binary_image = cv2.bitwise_not(binary_image)
+    result = opening(inverted_binary_image, kernel_size)
+    _, buffer = cv2.imencode('.png', result)
+    return StreamingResponse(io.BytesIO(buffer), media_type="image/png")
+
+@app.post("/morphological/closing/")
+async def process_closing(image: UploadFile = File(...), kernel_size: int = 3):
+    img = read_image(image)
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    binary_image = to_binary(gray)
+    inverted_binary_image = cv2.bitwise_not(binary_image)
+    result = closing(inverted_binary_image, kernel_size)
     _, buffer = cv2.imencode('.png', result)
     return StreamingResponse(io.BytesIO(buffer), media_type="image/png")
 
@@ -212,14 +239,14 @@ async def process_normalized_correlation_manual(image: UploadFile = File(...), t
     
     return StreamingResponse(BytesIO(buffer), media_type="image/png")
 
-# @app.post("/contra-harmonic-filter/")
-# async def process_contra_harmonic_filter(image: UploadFile = File(...), size: int = 3, Q: float = -1):
-#     img = read_image(image)
-#     gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-#     filtered_img = contra_harmonic_mean_filter(gray_img, size, Q)
-#     _, buffer = cv2.imencode('.png', filtered_img)
+@app.post("/contra-harmonic-filter/")
+async def process_contra_harmonic_filter(image: UploadFile = File(...), size: int = 3, Q: float = -1):
+    img = read_image(image)
+    gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    filtered_img = contra_harmonic_mean_filter(gray_img, size, Q)
+    _, buffer = cv2.imencode('.png', filtered_img)
     
-#     return StreamingResponse(BytesIO(buffer), media_type="image/png")
+    return StreamingResponse(BytesIO(buffer), media_type="image/png")
 
 @app.post("/sharpening-laplacian/")
 async def process_sharpening_laplacian(image: UploadFile = File(...)):
@@ -244,6 +271,8 @@ async def apply_frequency_filter(image: UploadFile = File(...), filter_type: str
     _, buffer = cv2.imencode('.png', filtered_img)
     
     return StreamingResponse(BytesIO(buffer), media_type="image/png")
+
+    
 
 @app.post("/add-gaussian-noise/")
 async def process_gaussian_noise(image: UploadFile = File(...), mean: float = 0, sigma: float = 25):
@@ -307,6 +336,66 @@ async def compress_decompress_image(image: UploadFile = File(...)):
     _, buffer = cv2.imencode('.png', np.array(decoded_image))
     
     return StreamingResponse(BytesIO(buffer), media_type="image/png")
+
+@app.post("/jpeg-compress/")
+async def jpeg_compress_api(image: UploadFile = File(...)):
+    """
+    API Endpoint for JPEG compression.
+    Input: Image file.
+    Output: Compressed binary file.
+    """
+    try:
+        # Lưu tệp đầu vào tạm thời
+        input_temp = NamedTemporaryFile(delete=False, suffix=".jpg")
+        input_temp.write(await image.read())
+        input_temp.close()
+
+        # Tạo tệp nhị phân tạm thời để lưu dữ liệu nén
+        output_temp = NamedTemporaryFile(delete=False, suffix=".bin")
+        output_temp.close()
+
+        # Gọi hàm nén JPEG
+        jpeg_compress(input_temp.name, output_temp.name)
+
+        # Xóa tệp đầu vào tạm thời
+        os.unlink(input_temp.name)
+
+        # Trả về tệp nhị phân nén
+        return FileResponse(output_temp.name, media_type="application/octet-stream", filename="compressed_image.bin")
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error during compression: {str(e)}")
+
+
+@app.post("/jpeg-decompress/")
+async def jpeg_decompress_api(compressed_file: UploadFile = File(...)):
+    """
+    API Endpoint for JPEG decompression.
+    Input: Compressed .bin file.
+    Output: Decompressed image in .jpg format.
+    """
+    try:
+        # Lưu tệp nén đầu vào tạm thời
+        input_temp = NamedTemporaryFile(delete=False, suffix=".bin")
+        input_temp.write(await compressed_file.read())
+        input_temp.close()
+
+        # Tạo tệp đầu ra tạm thời
+        output_temp = NamedTemporaryFile(delete=False, suffix=".jpg")
+        output_temp.close()
+
+        # Gọi hàm giải nén JPEG
+        jpeg_decompress(input_temp.name, output_temp.name)
+
+        # Xóa tệp nén tạm thời
+        os.unlink(input_temp.name)
+
+        # Trả về tệp ảnh giải nén
+        return FileResponse(output_temp.name, media_type="image/jpeg", filename="decompressed_image.jpg")
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error during decompression: {str(e)}")
+
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
