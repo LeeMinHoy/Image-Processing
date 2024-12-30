@@ -1,4 +1,4 @@
-# Image Processing Online 
+![image](https://github.com/user-attachments/assets/d7ea38cf-0c32-4d49-ad36-4e203e18ecae)# Image Processing Online 
 ## 🌟 Introduction
 Image processing is a cornerstone of modern technology, enabling innovations across various domains, from enhancing photography to preparing data for artificial intelligence models. This project provides an advanced and user-friendly solution by combining FastAPI as the backend for robust image processing and Streamlit as the frontend for seamless interaction.
 
@@ -71,46 +71,46 @@ streamlit run FE.py
 
 **Before**
 
-<img src="https://contrib.rocks/image?repo=Louis3797/awesome-readme-template" width = 300 />
+<img src="https://github.com/user-attachments/assets/2562593c-5542-4bb3-b0f6-b57405a5eb21" width = "300" />
 **After**
 
-<img src="https://contrib.rocks/image?repo=Louis3797/awesome-readme-template" width = 300 />
+<img src="https://github.com/user-attachments/assets/28deaa98-2cd7-4918-8ebf-b76cffa32b71" width = "300" />
 
-3. Median Filter
+3. Otsu Threshold Segmentation
 
 **Before**
 
-<img src="https://contrib.rocks/image?repo=Louis3797/awesome-readme-template" width = 300 />
+<img src="https://github.com/user-attachments/assets/af8e9254-e287-4573-97a4-4c58518db8dd" width = "300" />
 **After**
 
-<img src="https://contrib.rocks/image?repo=Louis3797/awesome-readme-template" width = 300 />
+<img src="https://github.com/user-attachments/assets/7d58c4e6-ff34-422b-9771-1509238b1ae7" width = "300" />
 
-4. Otsu Threshold Segmentation
+4. Median Filter
    
 **Before**
 
-<img src="https://contrib.rocks/image?repo=Louis3797/awesome-readme-template" width = 300 />
+<img src="https://github.com/user-attachments/assets/f3318dff-9a38-44a9-81cc-5dbf0b65be8a" width = "300" />
 **After**
 
-<img src="https://contrib.rocks/image?repo=Louis3797/awesome-readme-template" width = 300 />
+<img src="https://github.com/user-attachments/assets/1d78ebc8-a622-4526-8c60-2334367cb9d0" width = "300" />
 
 5. Add Gaussian Noise
 
 **Before**
 
-<img src="https://contrib.rocks/image?repo=Louis3797/awesome-readme-template" width = 300 />
+<img src="https://github.com/user-attachments/assets/0c3d94bd-ecf9-4d2d-9e80-1787c02f4ec6" width = "300" />
 **After**
 
-<img src="https://contrib.rocks/image?repo=Louis3797/awesome-readme-template" width = 300 />
+<img src="https://github.com/user-attachments/assets/aaa4422c-b823-4f52-a4d3-448c8baf80c0" width = "300" />
 
 6. Erosion Morphology
 
 **Before**
 
-<img src="https://contrib.rocks/image?repo=Louis3797/awesome-readme-template" width = 300 />
+<img src="https://github.com/user-attachments/assets/22967305-0131-42e1-864a-da8d428d70da" width = "300" />
 **After**
 
-<img src="https://contrib.rocks/image?repo=Louis3797/awesome-readme-template" width = 300 />
+<img src="https://github.com/user-attachments/assets/465823ef-cfde-45fd-bc3b-8a3b35e56fe0" width = "300" />
 
 ## 🤝 Contact
 Email: minhkhoi080203@gmail.com 
