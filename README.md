@@ -64,16 +64,16 @@ streamlit run FE.py
 
 **Before**
 <img src="https://github.com/user-attachments/assets/99081efc-2214-43f0-a6f4-0b4c6344d36a" width = "300" />
+
 **After**
 <img src="https://github.com/user-attachments/assets/ae59e4f1-97f8-4876-a002-69a1ee64d07c" width = "300" />
 
 2. Historgram Equalization
 
 **Before**
-
 <img src="https://github.com/user-attachments/assets/2562593c-5542-4bb3-b0f6-b57405a5eb21" width = "300" />
-**After**
 
+**After**
 <img src="https://github.com/user-attachments/assets/28deaa98-2cd7-4918-8ebf-b76cffa32b71" width = "300" />
 
 3. Otsu Threshold Segmentation
