@@ -17,12 +17,12 @@ from BitPlaneSlicing import bit_plane_slicing
 from HistogramProcessing import histogramEqualization, histogramMatching
 from NegativeImages import negative_process
 from Logarithmic import logarithmic_process
-from Morphological import to_binary, erosion, dilation, opening, closing
+from Morphological import to_binary, erosion, dilation, opening, closing, opening_cv2, closing_cv2
 from Segmentation import otsu_threshold_manual
 from powerLaw import power_law_transform
 from PieceWiseLinear import piecewiseLinear
 from ThersholdImages import threshold_processing
-from Filter import mean_filter, mean_filter_manual, median_filter, median_filter_manual, normalized_correletion, normalized_correlation_manual, contra_harmonic_mean_filter, sharpening_Laplacian
+from Filter import mean_filter, mean_filter_manual, median_filter, median_filter_manual, normalized_correlation, normalized_correlation_manual, contra_harmonic_mean_filter, sharpening_Laplacian
 from FFT_filter import ideal_low_pass_filter, butterworth_low_pass_filter, gaussian_low_pass_filter, apply_filter_in_frequency_domain
 from ImageCompression import rle_encode, rle_decode, calculate_rms
 from jpegCompression.main import jpeg_compress, jpeg_decompress
@@ -134,7 +134,7 @@ async def process_opening(image: UploadFile = File(...), kernel_size: int = 3):
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     binary_image = to_binary(gray)
     inverted_binary_image = cv2.bitwise_not(binary_image)
-    result = opening(inverted_binary_image, kernel_size)
+    result = opening_cv2(inverted_binary_image, kernel_size)
     _, buffer = cv2.imencode('.png', result)
     return StreamingResponse(io.BytesIO(buffer), media_type="image/png")
 
@@ -223,7 +223,7 @@ async def process_normalized_correlation(image: UploadFile = File(...), template
     template_img = read_image(template)
     gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     gray_template = cv2.cvtColor(template_img, cv2.COLOR_BGR2GRAY)
-    result = normalized_correletion(gray_img, gray_template)
+    result = normalized_correlation(gray_img, gray_template)
     _, buffer = cv2.imencode('.png', result)
     
     return StreamingResponse(BytesIO(buffer), media_type="image/png")
@@ -271,8 +271,6 @@ async def apply_frequency_filter(image: UploadFile = File(...), filter_type: str
     _, buffer = cv2.imencode('.png', filtered_img)
     
     return StreamingResponse(BytesIO(buffer), media_type="image/png")
-
-    
 
 @app.post("/add-gaussian-noise/")
 async def process_gaussian_noise(image: UploadFile = File(...), mean: float = 0, sigma: float = 25):
@@ -323,7 +321,7 @@ async def process_histogram_matching(source_image: UploadFile = File(...), refer
     
     return StreamingResponse(BytesIO(buffer), media_type="image/png")
 
-@app.post("/compression_rle/")
+@app.post("/compression-rle/")
 async def compress_decompress_image(image: UploadFile = File(...)):
     img = read_image(image)
     pixels = list(img.flatten())

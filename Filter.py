@@ -12,9 +12,36 @@ def mean_filter(image, size=3):
 def median_filter(image,size = 3):
     return cv2.medianBlur(image, size)
 
-def normalized_correletion(image,template):
-    result = cv2.matchTemplate(image, template, cv2.TM_CCOEFF_NORMED) #image: Input image as a 2D numpy array and template: Template for correlation as a 2D numpy array.
-    return result
+def normalized_correlation(image, template):
+    """
+    Thực hiện normalized correlation và trả về ảnh có vùng matched được khoanh vùng.
+
+    Parameters:
+    - image (numpy.ndarray): Ảnh gốc (grayscale).
+    - template (numpy.ndarray): Template (grayscale).
+
+    Returns:
+    - image_with_rectangle (numpy.ndarray): Ảnh đã được khoanh vùng matched.
+    """
+    # Kích thước của template
+    h, w = template.shape
+
+    # Thực hiện template matching với normalized cross-correlation
+    result = cv2.matchTemplate(image, template, cv2.TM_CCORR_NORMED)
+
+    # Tìm vị trí tốt nhất
+    _, max_val, _, max_loc = cv2.minMaxLoc(result)
+
+    # Vẽ hình chữ nhật tại vị trí tốt nhất
+    top_left = max_loc
+    bottom_right = (top_left[0] + w, top_left[1] + h)
+    image_with_rectangle = image.copy()  # Tạo bản sao để không ghi đè ảnh gốc
+    cv2.rectangle(image_with_rectangle, top_left, bottom_right, 255, 2)
+
+    print(f"Max correlation value: {max_val:.4f}")
+    print(f"Top-left corner of match: {top_left}")
+
+    return image_with_rectangle
 
 
 def normalized_correlation_manual(image, template):
