@@ -18,7 +18,7 @@ This project is designed to offer a comprehensive suite of image processing capa
 ## 🎥 Simple demo
 
 <div align="center">
-  <img src="https://github.com/marwin1991/profile-technology-icons/raw/main/static/demo.gif" />
+  <img src="![Photo Editor - Google Chrome 2025-01-04 18-22-19](https://github.com/user-attachments/assets/f2ed8a12-cee9-420b-a764-ab26b44d06e0)"/>
 </div>
 
 ## 👾 Tech Stack
