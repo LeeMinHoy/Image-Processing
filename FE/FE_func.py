@@ -60,10 +60,11 @@ def negative_image():
 
     if uploaded_file:
         # Hiển thị ảnh gốc
-        st.subheader("Original Image")
+        
         original_image = Image.open(uploaded_file)
         col1, col2 = st.columns(2)
         with col1:
+            st.subheader("Original Image")
             st.image(original_image, caption="Original Image", width = 300)
 
         if st.button("Generate Negative Image"):
@@ -80,8 +81,8 @@ def negative_image():
                 if response.status_code == 200:
                     # Hiển thị ảnh kết quả
                     result_image = Image.open(io.BytesIO(response.content))
-                    st.subheader("Negative Image")
                     with col2: 
+                        st.subheader("Negative Image")
                         st.image(result_image, caption="Negative Image", width = 300)
 
                     # Nút tải ảnh về
@@ -112,10 +113,11 @@ def threshold_processing():
         # Thiết lập giá trị ngưỡng
         threshold_value = st.slider("Threshold Value", min_value=0, max_value=255, value=50, step=1)
         # Hiển thị ảnh gốc
-        st.subheader("Original Image")
+        
         original_image = Image.open(uploaded_file)
         col1, col2 = st.columns(2)
         with col1:
+            st.subheader("Original Image")
             st.image(original_image, caption="Original Image", width = 300)
 
         if st.button("Apply Threshold Processing"):
@@ -132,9 +134,10 @@ def threshold_processing():
 
                 if response.status_code == 200:
                     # Hiển thị ảnh kết quả
-                    st.subheader("Thresholded Image")
+                    
                     result_image = Image.open(io.BytesIO(response.content))
                     with col2:
+                        st.subheader("Thresholded Image")
                         st.image(result_image, caption="Thresholded Image", width=300)
 
                     # Nút tải ảnh về
@@ -165,6 +168,7 @@ def logarithmic():
         original_image = Image.open(uploaded_file)
         col1, col2 = st.columns(2)
         with col1:
+            st.subheader("Original Image")
             st.image(original_image, caption="Original Image", width = 300)
 
         if st.button("Apply Logarithmic Transformation"):
@@ -180,9 +184,10 @@ def logarithmic():
 
                 if response.status_code == 200:
                     # Hiển thị ảnh kết quả
-                    st.subheader("Logarithmic Transformed Image")
+                    
                     result_image = Image.open(io.BytesIO(response.content))
                     with col2:
+                        st.subheader("Logarithmic Transformed Image")
                         st.image(result_image, caption="Logarithmic Transformed Image", width = 300)
 
                     # Nút tải ảnh về
@@ -213,10 +218,11 @@ def powerlaw():
         # Thiết lập giá trị gamma
         gamma = st.slider("Gamma Value", min_value=0.1, max_value=5.0, value=0.4, step=0.1)
         # Hiển thị ảnh gốc
-        st.subheader("Original Image")
+        
         original_image = Image.open(uploaded_file)
         col1, col2 = st.columns(2)
         with col1:
+            st.subheader("Original Image")
             st.image(original_image, caption="Original Image", width = 300)
 
         if st.button("Apply Power Law Transformation"):
@@ -233,9 +239,10 @@ def powerlaw():
 
                 if response.status_code == 200:
                     # Hiển thị ảnh kết quả
-                    st.subheader("Transformed Image")
+                    
                     result_image = Image.open(io.BytesIO(response.content))
                     with col2:
+                        st.subheader("Transformed Image")
                         st.image(result_image, caption="Transformed Image", width = 300)
 
                     # Nút tải ảnh về
@@ -270,10 +277,11 @@ def piecewise_linear():
         r2 = st.slider("R2 (Input Intensity)", min_value=0, max_value=255, value=180, step=1)
         s2 = st.slider("S2 (Output Intensity for R2)", min_value=0, max_value=255, value=220, step=1)
         # Hiển thị ảnh gốc
-        st.subheader("Original Image")
+        
         original_image = Image.open(uploaded_file)
         col1, col2 = st.columns(2)
         with col1:
+            st.subheader("Original Image")
             st.image(original_image, caption="Original Image", width = 300)
 
         if st.button("Apply Piecewise Linear Transformation"):
@@ -290,9 +298,10 @@ def piecewise_linear():
 
                 if response.status_code == 200:
                     # Hiển thị ảnh kết quả
-                    st.subheader("Transformed Image")
+                    
                     result_image = Image.open(io.BytesIO(response.content))
                     with col2:
+                        st.subheader("Transformed Image")
                         st.image(result_image, caption="Transformed Image", width=300)
 
                     # Nút tải ảnh về
@@ -320,12 +329,12 @@ def Histogram_Equalization():
 
     if uploaded_file:
         # Hiển thị ảnh gốc
-        st.subheader("Original Image")
+       
         original_image = Image.open(uploaded_file)
         col1, col2 = st.columns(2)
         with col1:
+            st.subheader("Original Image")
             st.image(original_image, caption="Original Image", width = 300)
-        st.image(original_image, caption="Original Image", use_column_width=True)
 
         if st.button("Process Histogram Equalization"):
             try:
@@ -340,9 +349,10 @@ def Histogram_Equalization():
 
                 if response.status_code == 200:
                     # Hiển thị ảnh kết quả
-                    st.subheader("Equalized Image")
+                    
                     result_image = Image.open(io.BytesIO(response.content))
                     with col2:
+                        st.subheader("Equalized Image")
                         st.image(result_image, caption="Histogram Equalized Image", width = 300)
 
                     # Nút tải ảnh về
@@ -375,10 +385,11 @@ def morphological_erosion():
         # Cài đặt kích thước kernel
         kernel_size = st.slider("Kernel Size", min_value=1, max_value=15, value=3, step=1)
         # Hiển thị ảnh gốc
-        st.subheader("Original Image")
+        
         original_image = Image.open(uploaded_file)
         col1, col2 = st.columns(2)
         with col1:
+            st.subheader("Original Image")
             st.image(original_image, caption="Original Image", width = 300)
 
         if st.button("Apply Morphological Erosion"):
@@ -395,9 +406,10 @@ def morphological_erosion():
 
                 if response.status_code == 200:
                     # Hiển thị ảnh kết quả
-                    st.subheader("Eroded Image")
+                    
                     result_image = Image.open(io.BytesIO(response.content))
                     with col2:
+                        st.subheader("Eroded Image")
                         st.image(result_image, caption="Eroded Image", width = 300)
 
                     # Nút tải ảnh về
@@ -429,10 +441,11 @@ def morphological_dilation():
         # Cài đặt kích thước kernel
         kernel_size = st.slider("Kernel Size", min_value=1, max_value=15, value=3, step=1)
         # Hiển thị ảnh gốc
-        st.subheader("Original Image")
+        
         original_image = Image.open(uploaded_file)
         col1, col2 = st.columns(2)
         with col1:
+            st.subheader("Original Image")
             st.image(original_image, caption="Original Image", width = 300)
 
         if st.button("Apply Morphological Dilation"):
@@ -445,9 +458,10 @@ def morphological_dilation():
 
                 if response.status_code == 200:
                     # Hiển thị ảnh kết quả
-                    st.subheader("Dilated Image")
+                    
                     result_image = Image.open(io.BytesIO(response.content))
                     with col2:
+                        st.subheader("Dilated Image")
                         st.image(result_image, caption="Dilated Image", width = 300)
 
                     # Nút tải ảnh về
@@ -478,10 +492,11 @@ def morphological_opening():
         # Cài đặt kích thước kernel
         kernel_size = st.slider("Kernel Size", min_value=1, max_value=15, value=3, step=1)
         # Hiển thị ảnh gốc
-        st.subheader("Original Image")
+        
         original_image = Image.open(uploaded_file)
         col1, col2 = st.columns(2)
         with col1:
+            st.subheader("Original Image")
             st.image(original_image, caption="Original Image", width = 300)
 
         if st.button("Apply Morphological Opening"):
@@ -496,9 +511,10 @@ def morphological_opening():
 
                 if response.status_code == 200:
                     # Hiển thị ảnh kết quả
-                    st.subheader("Opened Image")
+                    
                     result_image = Image.open(io.BytesIO(response.content))
                     with col2:
+                        st.subheader("Opened Image")
                         st.image(result_image, caption="Opened Image",width = 300)
 
                     # Nút tải ảnh về
@@ -529,10 +545,11 @@ def morphological_closing():
         # Cài đặt kích thước kernel
         kernel_size = st.slider("Kernel Size", min_value=1, max_value=15, value=3, step=1)
         # Hiển thị ảnh gốc
-        st.subheader("Original Image")
+        
         original_image = Image.open(uploaded_file)
         col1, col2 = st.columns(2)
         with col1:
+            st.subheader("Original Image")
             st.image(original_image, caption="Original Image", width = 300)
 
         if st.button("Apply Morphological Closing"):
@@ -549,9 +566,10 @@ def morphological_closing():
 
                 if response.status_code == 200:
                     # Hiển thị ảnh kết quả
-                    st.subheader("Closed Image")
+                    
                     result_image = Image.open(io.BytesIO(response.content))
                     with col2: 
+                        st.subheader("Closed Image")
                         st.image(result_image, caption="Closed Image", width = 300)
 
                     # Nút tải ảnh về
@@ -578,10 +596,11 @@ def otsu_threshold():
 
     if uploaded_file:
         # Hiển thị ảnh gốc
-        st.subheader("Original Image")
+        
         original_image = Image.open(uploaded_file)
         col1, col2 = st.columns(2)
         with col1:
+            st.subheader("Original Image")
             st.image(original_image, caption="Original Image", width = 300)
 
         if st.button("Apply Otsu's Thresholding"):
@@ -597,9 +616,10 @@ def otsu_threshold():
 
                 if response.status_code == 200:
                     # Hiển thị ảnh kết quả
-                    st.subheader("Thresholded Image")
+                    
                     result_image = Image.open(io.BytesIO(response.content))
                     with col2:
+                        st.subheader("Thresholded Image")
                         st.image(result_image, caption="Thresholded Image", width = 300)
 
                     # Nút tải ảnh về
@@ -630,10 +650,11 @@ def mean_filter():
         # Thiết lập kích thước bộ lọc
         kernel_size = st.slider("Kernel Size", min_value=1, max_value=15, value=3, step=1)
         # Hiển thị ảnh gốc
-        st.subheader("Original Image")
+        
         original_image = Image.open(uploaded_file)
         col1, col2 = st.columns(2)
         with col1:
+            st.subheader("Original Image")
             st.image(original_image, caption="Original Image", width = 300)
 
         if st.button("Apply Mean Filter"):
@@ -650,9 +671,10 @@ def mean_filter():
 
                 if response.status_code == 200:
                     # Hiển thị ảnh kết quả
-                    st.subheader("Filtered Image")
+                    
                     result_image = Image.open(io.BytesIO(response.content))
                     with col2:
+                        st.subheader("Filtered Image")
                         st.image(result_image, caption="Filtered Image", width = 300)
 
                     # Nút tải ảnh về
@@ -684,10 +706,11 @@ def median_filter():
 
     if uploaded_file:
         # Hiển thị ảnh gốc
-        st.subheader("Original Image")
+        
         original_image = Image.open(uploaded_file)
         col1, col2 = st.columns(2)
         with col1:
+            st.subheader("Original Image")
             st.image(original_image, caption="Original Image", width = 300)
 
         if st.button("Apply Median Filter"):
@@ -704,9 +727,10 @@ def median_filter():
 
                 if response.status_code == 200:
                     # Hiển thị ảnh kết quả
-                    st.subheader("Filtered Image")
+                    
                     result_image = Image.open(io.BytesIO(response.content))
                     with col2:
+                        st.subheader("Filtered Image")
                         st.image(result_image, caption="Filtered Image", width = 300)
 
                     # Nút tải ảnh về
@@ -735,10 +759,11 @@ def normalized_correlation():
         # Tải ảnh template lên
         uploaded_template = st.file_uploader("Upload the template image (JPG/PNG):", type=["jpg", "jpeg", "png"], key="template_image_uploader")
         # Hiển thị ảnh gốc và template
-        st.subheader("Original Image")
+        
         original_image = Image.open(uploaded_file)
         col1, col2 = st.columns(2)
         with col1:
+            st.subheader("Original Image")
             st.image(original_image, caption="Original Image", width = 300)
 
         st.subheader("Template Image")
@@ -760,8 +785,9 @@ def normalized_correlation():
 
                 if response.status_code == 200:
                     # Hiển thị ảnh kết quả
-                    st.subheader("Resulting Image")
+                    
                     result_image = Image.open(io.BytesIO(response.content))
+                    st.subheader("Resulting Image")
                     st.image(result_image, caption="Resulting Image",  width = 300)
 
                     # Nút tải ảnh về
@@ -788,10 +814,11 @@ def sharpening_laplacian():
 
     if uploaded_file:
         # Hiển thị ảnh gốc
-        st.subheader("Original Image")
+        
         original_image = Image.open(uploaded_file)
         col1, col2 = st.columns(2)
         with col1:
+            st.subheader("Original Image")
             st.image(original_image, caption="Original Image", width = 300)
 
         if st.button("Apply Laplacian Sharpening"):
@@ -807,9 +834,10 @@ def sharpening_laplacian():
 
                 if response.status_code == 200:
                     # Hiển thị ảnh kết quả
-                    st.subheader("Sharpened Image")
+                    
                     result_image = Image.open(io.BytesIO(response.content))
                     with col2: 
+                        st.subheader("Sharpened Image")
                         st.image(result_image, caption="Sharpened Image", width = 300)
 
                     # Nút tải ảnh về
@@ -829,7 +857,12 @@ def sharpening_laplacian():
 def apply_frequency_filter():
     # Địa chỉ API
     API_URL = "http://127.0.0.1:8000/apply-frequency-filter/"
-
+    filter_type = st.selectbox(
+        "Select Filter Type:",
+        options=["ideal", "butterworth", "gaussian"],
+        index=2,  # Default to "gaussian"
+        key="filter_type_selectbox"
+    )
     st.title("Apply Frequency Filter")
     st.write("Upload an image and set filter parameters to apply frequency-based filtering.")
 
@@ -837,14 +870,6 @@ def apply_frequency_filter():
     uploaded_file = st.file_uploader("Upload a grayscale image (JPG/PNG):", type=["jpg", "jpeg", "png"], key="frequency_filter_uploader")
 
     # Chọn loại bộ lọc
-    filter_type = st.selectbox(
-        "Select Filter Type:",
-        options=["ideal", "butterworth", "gaussian"],
-        index=2,  # Default to "gaussian"
-        key="filter_type_selectbox"
-    )
-
-
     if uploaded_file:
         # Thiết lập tham số cutoff
         cutoff = st.slider(
@@ -926,13 +951,12 @@ def add_gaussian_noise():
         # Thiết lập giá trị mean và sigma
         mean = st.slider("Mean (μ)", min_value=-100.0, max_value=100.0, value=0.0, step=1.0, key="mean_slider")
         sigma = st.slider("Sigma (σ)", min_value=1.0, max_value=100.0, value=25.0, step=1.0, key="sigma_slider")
-
-        
         # Hiển thị ảnh gốc
-        st.subheader("Original Image")
+        
         original_image = Image.open(uploaded_file)
         col1, col2 = st.columns(2)
         with col1:
+            st.subheader("Original Image")
             st.image(original_image, caption="Original Image", width = 300)
 
         if st.button("Add Gaussian Noise"):
@@ -949,9 +973,10 @@ def add_gaussian_noise():
 
                 if response.status_code == 200:
                     # Hiển thị ảnh kết quả
-                    st.subheader("Noisy Image")
+                    
                     result_image = Image.open(io.BytesIO(response.content))
                     with col2: 
+                        st.subheader("Noisy Image")
                         st.image(result_image, caption="Noisy Image",width = 300)
 
                     # Nút tải ảnh về
@@ -1095,15 +1120,17 @@ def histogram_matching():
 
     if uploaded_source_image and uploaded_reference_image:
         # Hiển thị ảnh nguồn và ảnh tham chiếu
-        st.subheader("Source Image")
+        
         source_image = Image.open(uploaded_source_image)
         col1, col2 = st.columns(2)
         with col1:
+            st.subheader("Source Image")
             st.image(source_image, caption="Original Image", width = 300)
 
-        st.subheader("Reference Image")
+        
         reference_image = Image.open(uploaded_reference_image)
         with col2:
+            st.subheader("Reference Image")
             st.image(reference_image, caption="Reference Image", width = 300)
 
         if st.button("Perform Histogram Matching"):
@@ -1126,7 +1153,7 @@ def histogram_matching():
                     # Hiển thị ảnh kết quả
                     st.subheader("Matched Image")
                     result_image = Image.open(io.BytesIO(response.content))
-                    st.image(result_image, caption="Matched Image", use_column_width=True)
+                    st.image(result_image, caption="Matched Image", width = 300)
 
                     # Nút tải ảnh về
                     st.download_button(
@@ -1260,7 +1287,7 @@ def hamonic():
             if response.status_code == 200:
                 # Hiển thị ảnh kết quả
                 result_image = Image.open(io.BytesIO(response.content))
-                st.image(result_image, caption="Ảnh đã xử lý (Contra-Harmonic Filter)", use_column_width=True)
+                st.image(result_image, caption="Ảnh đã xử lý (Contra-Harmonic Filter)", width=300)
 
                 # Nút tải ảnh kết quả
                 st.download_button(

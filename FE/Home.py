@@ -90,7 +90,7 @@ st.markdown(
 )
 
 # Header Section
-st.markdown('<div class="header">📸 Online Photo Editor for Everyone</div>', unsafe_allow_html=True)
+st.markdown('<div class="header">📸Image Process for Free</div>', unsafe_allow_html=True)
 st.markdown(
     '<div class="subheader">Enhance your photos effortlessly with our free online editor. Simple, intuitive, and packed with features!</div>',
     unsafe_allow_html=True,
@@ -111,7 +111,6 @@ st.markdown(
     """
     <div class="popular-features">
         <div class="feature-box">
-            <img src="https://img.icons8.com/ios-filled/100/000000/brightness.png" alt="Brightness Adjustment">
             <div class="feature-title">Brightness</div>
             <div class="feature-description">Fine-tune your photo's brightness with ease.</div>
         </div>
