@@ -55,7 +55,7 @@ uvicorn server:app --port 8000 --reload
 
 ## 🏃 Run Frontend Streamlit server: 
 ```bash
-pip install streamlit
+cd FE
 streamlit run Home.py
 ```
 
