@@ -18,7 +18,7 @@ This project is designed to offer a comprehensive suite of image processing capa
 ## 🎥 Simple demo
 
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/f2ed8a12-cee9-420b-a764-ab26b44d06e0"/>
+  <img src="https://github.com/LeeMinHoy/Image-Processing/blob/main/Photo%20Editor%20-%20Google%20Chrome%202025-01-04%2018-22-19.gif"/>
 </div>
 
 ## 👾 Tech Stack
@@ -55,7 +55,8 @@ uvicorn server:app --port 8000 --reload
 
 ## 🏃 Run Frontend Streamlit server: 
 ```bash
-streamlit run FE.py
+pip install streamlit
+streamlit run Home.py
 ```
 
 ## Example Results
