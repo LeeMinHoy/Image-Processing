@@ -13,16 +13,6 @@ def median_filter(image,size = 3):
     return cv2.medianBlur(image, size)
 
 def normalized_correlation(image, template):
-    """
-    Thực hiện normalized correlation và trả về ảnh có vùng matched được khoanh vùng.
-
-    Parameters:
-    - image (numpy.ndarray): Ảnh gốc (grayscale).
-    - template (numpy.ndarray): Template (grayscale).
-
-    Returns:
-    - image_with_rectangle (numpy.ndarray): Ảnh đã được khoanh vùng matched.
-    """
     # Kích thước của template
     h, w = template.shape
 
